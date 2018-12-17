@@ -17,21 +17,36 @@ export default class CounterComponent extends Component {
                     </Text>
                 </View>
                 <View style={styles.viewButton}>
-                    <TouchableOpacity style={styles.button}>
+                    <TouchableOpacity
+                        style={styles.button}
+                        onPress={() => {
+                            this.props.onIncrement(4);
+                        }}
+                    >
                         <Text style={styles.buttonTitle}>
                             Increment +
                         </Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.button}>
+                    <TouchableOpacity
+                        style={styles.button}
+                        onPress={() => {
+                            this.props.onDecrement(4);
+                        }}
+                    >
                         <Text style={styles.buttonTitle}>
                             Decrement -
                         </Text>
                     </TouchableOpacity>
                 </View>
-                <View style={{ flex: 1, backgroundColor: 'red' }}>
-
+                <View style={styles.viewCountNumber}>
+                    <Text style={styles.textTitleCount}>
+                        Counts:
+                    </Text>
+                    <Text style={styles.textNumber}>
+                        {this.props.times}
+                    </Text>
                 </View>
-            </View>
+            </View >
         )
     }
 }
@@ -39,7 +54,7 @@ export default class CounterComponent extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        marginTop: Platform.OS == 'ios' ? 34 : 0
+        marginTop: Platform.OS == 'ios' ? 34 : 0,
     },
     viewTitle: {
         height: 50,
@@ -54,22 +69,35 @@ const styles = StyleSheet.create({
     },
     viewButton: {
         height: 80,
-        width: width,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginLeft: 12,
-        paddingRight: 12,
-        backgroundColor: 'blue'
+        alignItems: 'center',
+        marginHorizontal: 12,
+        // backgroundColor: 'blue'
     },
     button: {
         height: 45,
         borderRadius: 10,
         backgroundColor: 'darkviolet',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        paddingHorizontal: 12
     },
     buttonTitle: {
         fontSize: 18,
         color: 'white'
+    },
+    viewCountNumber: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    textTitleCount: {
+        fontSize: 24,
+        fontWeight: 'bold'
+    },
+    textNumber: {
+        fontSize: 32,
+        marginTop: 12
     }
 })
